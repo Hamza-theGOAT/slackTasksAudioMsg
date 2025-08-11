@@ -15,8 +15,19 @@ def getCredz():
     return client, channelID, audioPath
 
 
-def postAudio(userToken, channelID, audioPath):
-    pass
+def postAudio(client, channelID, audioPath):
+    response = client.files_upload_v2(
+        channel=channelID,
+        file=audioPath,
+        title="Temp Audio.mp3",
+        initial_comment="Test run for Temp Audio Message..."
+    )
+
+    if not response['ok']:
+        print("Failed to send Audio")
+        print(f"{response.status_code}: {response['error']}")
+    else:
+        print("Audio Message sent successfully!!!")
 
 
 def main():
