@@ -7,18 +7,21 @@ def getCredz():
     load_dotenv()
     userToken = os.getenv('userToken')
     botToken = os.getenv('botToken')
+
+    client = WebClient(token=botToken)
     channelID = os.getenv('channelID')
+    audioPath = os.getenv('audioPath')
 
-    return userToken, botToken, channelID
+    return client, channelID, audioPath
 
 
-def postAudio(userToken, channelID):
+def postAudio(userToken, channelID, audioPath):
     pass
 
 
 def main():
-    userToken, botToken, channelID = getCredz()
-    postAudio(userToken, channelID)
+    client, channelID, audioPath = getCredz()
+    postAudio(client, channelID, audioPath)
 
 
 if __name__ == '__main__':
